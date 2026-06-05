@@ -29,7 +29,7 @@ my-app/
 这里在运行这个.claude/hooks 下的钩子函数`parallel-workspace-creation/.claude/hooks/create-peer-worktree.ps1`时。需要设置本项目的 Settings.json 文件的参数，这是因为 Claude Code 它默认用它的 Worktree 创建的工作树项目，这样子会变成跟cc默认的工作区项目代码创建方式相同，而且如果是远程和本地都有项目代码，优先会从远程拉取仓库的稳定代码的。我们要让它能够拉取本地的代码，需要调整参数。在主仓库下的.claude/文件夹下面创建`parallel-workspace-creation/.claude/settings.json`里面配置好hooks。
 
 示例项目最开始的工作区样子如下图所示：
-![](./original-repository-status.png)
+![](./images/original-repository-status.png)
 
 准备工作就绪之后，可以在各自的终端中输入以下命令：
 第一个主Agent开发终端
@@ -48,13 +48,13 @@ cd cd .\parallel-workspace-creation\
 claude --worktree create-go-0-4
 ```
 初期准备工作类似于这样，这里为了更好展示我如下图布局，实际上可以多开很多个工作树分支并行开发，并且互相不受影响。
-![alt text](./claude-code-parallel-dev.png)
+![alt text](./images/claude-code-parallel-dev.png)
 当我们把分支的命令回车之后，可以发现当前工作区主仓库同等级下面会有对应分支的工作树代码。
-![alt text](./workspace-code-files-after-running.png)
+![alt text](./images/workspace-code-files-after-running.png)
 
-![alt text](./three-claude-code-terminal-views.png)
+![alt text](./images/three-claude-code-terminal-views.png)
 然后我们可以直接查看各自终端分别处于什么分支下面：
-![alt text](./branch-path.png)
+![alt text](./images/branch-path.png)
 能够看到不同的 Worktree 名称，它对应的一个分支的情况都是不相同的，并且它对应的一个工作区项目代码也是不同的。
 
 ### 并行开发过程（这里以创建java和go代码文件为例）
@@ -64,7 +64,7 @@ claude --worktree create-go-0-4
 在go分支说：请用go代码写一个输出0-4数字的代码文件，写在`src`文件夹下面
 
 此时对应分支与Claude Code对应一一对话，这样之后工作区各自文件夹下面会多出对应对话的文件，如下图所示：
-![alt text](./parallel-dev.png)
+![alt text](./images/parallel-dev.png)
 可以看到在 Go 分支和 Java 分支对应的文件夹下面，都多出了一个文件，分别是 main.go 文件和 NumberPrinter.java 文件。
 并且测试了一下运行均能够成功。因此，分支并行开发功能成功。接下来是要合并到主分支上，实现整合，当前这个java输出0-4以及go输出0-4要整合到主仓库`parallel-workspace-creation`中，实现整合。
 
@@ -80,12 +80,12 @@ git commit ".."
 ```
 git worktree list
 ```
-![](./multi-branch-name.png)
+![](./images/multi-branch-name.png)
 然后一定要切换到主分支进行合并，在终端之前使用!可切换使用终端指令。
-![alt text](./git-merge.png)
+![alt text](./images/git-merge.png)
 
 最终可以看到主仓库代码整合了go代码文件和java代码文件。这样子就成功实现了并行开发。
-![](./result.png)
+![](./images/result.png)
 
 如果你之后不想要这两个长期的分支的话，可以运行如下命令删除它们。
 ```powershell
@@ -96,7 +96,7 @@ git branch -D <branch-name>
 
 ```
 以下面为例
-![](./path-name-and-branch-name.png)
+![](./images/path-name-and-branch-name.png)
 拿取自己本地对应的信息，进行处理。
 
 ## LINCENSE
