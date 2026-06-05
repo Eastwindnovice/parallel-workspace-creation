@@ -1,6 +1,9 @@
 # 同级工作区创建——并行开发
 借助WorktreeCreate钩子函数，可让 Claude Code 管理工作树分支，同时将各工作树分支存放至与主仓库同级的父目录下，便于项目开发。
 
+## 核心文件
+.claude/hooks/create-peer-worktree.ps1 以及 .claude/settings.json 文件是实现工作区项目代码这个与主仓库目录平级的功能。
+
 ## 为什么使用它 ?
 如果使用Claude Code（以下简称cc） 默认的Worktree分支进行并行开发的话，cc默认会把创建出来的工作区项目文件放到主仓库下的.claude/worktree/ 下面，类似于下面这种格式：
 ~~~
